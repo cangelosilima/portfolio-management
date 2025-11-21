@@ -4,6 +4,9 @@ import { useState } from "react";
 import TopNavigation from "@/components/trading/top-navigation";
 import BottomTabs from "@/components/trading/bottom-tabs";
 import DataTable, { TableColumn } from "@/components/trading/data-table";
+import PortfolioEditorModal from "@/components/trading/portfolio-editor-modal";
+import { Button } from "@/components/ui/button";
+import { Plus, Edit, Ban } from "lucide-react";
 import {
   ResizablePanelGroup,
   ResizablePanel,
@@ -54,56 +57,83 @@ const cashiersColumns: TableColumn[] = [
 export default function Page() {
   const [activeTopTab, setActiveTopTab] = useState("portfolio");
   const [activeBottomTab, setActiveBottomTab] = useState("tradedesk");
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const filterData = (data: any[]) => {
-    if (!searchQuery) return data;
-    return data.filter((row) =>
-      Object.values(row).some((value) =>
-        String(value).toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    );
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState<"create" | "edit">("create");
 
   const getBottomPanelData = () => {
     switch (activeBottomTab) {
       case "tradedesk":
-        return { columns: tradeDeskColumns, data: filterData(tradeDeskData) };
+        return { columns: tradeDeskColumns, data: tradeDeskData };
       case "cashiers":
-        return { columns: cashiersColumns, data: filterData(cashiersData) };
+        return { columns: cashiersColumns, data: cashiersData };
       case "subcashiers":
-        return { columns: cashiersColumns, data: filterData(subCashiersData) };
+        return { columns: cashiersColumns, data: subCashiersData };
       case "bookstore":
-        return { columns: cashiersColumns, data: filterData(bookStoreData) };
+        return { columns: cashiersColumns, data: bookStoreData };
       default:
-        return { columns: tradeDeskColumns, data: filterData(tradeDeskData) };
+        return { columns: tradeDeskColumns, data: tradeDeskData };
     }
   };
 
   const bottomPanelData = getBottomPanelData();
 
+  const handleCreate = () => {
+    setModalMode("create");
+    setIsModalOpen(true);
+  };
+
+  const handleEdit = () => {
+    setModalMode("edit");
+    setIsModalOpen(true);
+  };
+
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-br from-purple-50 via-purple-100 to-purple-50">
+    <div className="h-screen flex flex-col bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200">
       <TopNavigation
         activeTab={activeTopTab}
         onTabChange={setActiveTopTab}
-        onSearch={setSearchQuery}
+        onSearch={() => {}}
       />
 
       <ResizablePanelGroup direction="vertical" className="flex-1">
         <ResizablePanel defaultSize={60} minSize={30}>
-          <div className="h-full p-3">
-            <div className="h-full rounded-sm overflow-hidden shadow-md">
+          <div className="h-full p-2 flex flex-col">
+            <div className="flex gap-1.5 mb-2 px-1">
+              <Button
+                size="sm"
+                onClick={handleCreate}
+                className="h-7 text-[10px] font-semibold bg-green-600 hover:bg-green-700 text-white border-2 border-green-700 shadow-md"
+              >
+                <Plus className="h-3.5 w-3.5 mr-1" />
+                Create
+              </Button>
+              <Button
+                size="sm"
+                onClick={handleEdit}
+                className="h-7 text-[10px] font-semibold bg-blue-600 hover:bg-blue-700 text-white border-2 border-blue-700 shadow-md"
+              >
+                <Edit className="h-3.5 w-3.5 mr-1" />
+                Edit
+              </Button>
+              <Button
+                size="sm"
+                className="h-7 text-[10px] font-semibold bg-red-600 hover:bg-red-700 text-white border-2 border-red-700 shadow-md"
+              >
+                <Ban className="h-3.5 w-3.5 mr-1" />
+                Inactive
+              </Button>
+            </div>
+            <div className="flex-1 overflow-hidden">
               <DataTable
                 columns={portfolioColumns}
-                data={filterData(portfolioData)}
+                data={portfolioData}
                 className="h-full"
               />
             </div>
           </div>
         </ResizablePanel>
 
-        <ResizableHandle className="h-1 bg-gradient-to-r from-purple-200 via-purple-300 to-purple-200 hover:from-purple-300 hover:via-purple-400 hover:to-purple-300 transition-all" />
+        <ResizableHandle className="h-1.5 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 hover:from-indigo-400 hover:via-indigo-500 hover:to-indigo-400 border-y border-gray-600 shadow-md cursor-row-resize" />
 
         <ResizablePanel defaultSize={40} minSize={20}>
           <div className="h-full flex flex-col">
@@ -111,8 +141,8 @@ export default function Page() {
               activeTab={activeBottomTab}
               onTabChange={setActiveBottomTab}
             />
-            <div className="flex-1 p-3 overflow-hidden">
-              <div className="h-full rounded-sm overflow-hidden shadow-md">
+            <div className="flex-1 p-2 overflow-hidden">
+              <div className="h-full overflow-hidden">
                 <DataTable
                   columns={bottomPanelData.columns}
                   data={bottomPanelData.data}
@@ -123,6 +153,12 @@ export default function Page() {
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
+
+      <PortfolioEditorModal
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        mode={modalMode}
+      />
     </div>
   );
 }
