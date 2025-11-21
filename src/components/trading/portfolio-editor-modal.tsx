@@ -77,29 +77,29 @@ export default function PortfolioEditorModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[900px] h-[700px] bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 p-0 gap-0 border-2 border-gray-400">
-        <DialogHeader className="bg-gradient-to-r from-gray-300 to-gray-200 border-b-2 border-gray-400 px-4 py-2">
-          <DialogTitle className="text-sm font-bold text-gray-800">
-            PortfolioEditor
+      <DialogContent className="max-w-[1000px] h-[750px] bg-white p-0 gap-0 border border-gray-300 rounded-lg shadow-xl">
+        <DialogHeader className="bg-gradient-to-r from-gray-100 to-gray-50 border-b border-gray-200 px-6 py-4">
+          <DialogTitle className="text-base font-semibold text-gray-800">
+            Portfolio Editor
           </DialogTitle>
         </DialogHeader>
 
         <div className="flex h-full overflow-hidden">
           {/* Left Panel - Form */}
-          <div className="w-[280px] bg-gray-100 border-r-2 border-gray-400 p-4 space-y-4 overflow-y-auto">
-            <div className="space-y-1.5">
-              <Label className="text-[10px] font-semibold text-gray-700">Name:</Label>
+          <div className="w-[300px] bg-gray-50 border-r border-gray-200 p-6 space-y-5 overflow-y-auto">
+            <div className="space-y-2">
+              <Label className="text-xs font-semibold text-gray-700">Name</Label>
               <Input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="h-7 text-[10px] border-2 border-gray-400 bg-white"
+                className="h-9 text-sm border-gray-300 bg-white"
               />
             </div>
 
-            <div className="space-y-1.5">
-              <Label className="text-[10px] font-semibold text-gray-700">Trade Desk:</Label>
+            <div className="space-y-2">
+              <Label className="text-xs font-semibold text-gray-700">Trade Desk</Label>
               <Select value={tradeDesk} onValueChange={setTradeDesk}>
-                <SelectTrigger className="h-7 text-[10px] border-2 border-gray-400 bg-white">
+                <SelectTrigger className="h-9 text-sm border-gray-300 bg-white">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -110,10 +110,10 @@ export default function PortfolioEditorModal({
               </Select>
             </div>
 
-            <div className="space-y-1.5">
-              <Label className="text-[10px] font-semibold text-gray-700">Cantera:</Label>
+            <div className="space-y-2">
+              <Label className="text-xs font-semibold text-gray-700">Cantera</Label>
               <Select value={cantera} onValueChange={setCantera}>
-                <SelectTrigger className="h-7 text-[10px] border-2 border-gray-400 bg-white">
+                <SelectTrigger className="h-9 text-sm border-gray-300 bg-white">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -123,10 +123,10 @@ export default function PortfolioEditorModal({
               </Select>
             </div>
 
-            <div className="space-y-1.5">
-              <Label className="text-[10px] font-semibold text-gray-700">Subcateira:</Label>
+            <div className="space-y-2">
+              <Label className="text-xs font-semibold text-gray-700">Subcateira</Label>
               <Select value={subcateira} onValueChange={setSubcateira}>
-                <SelectTrigger className="h-7 text-[10px] border-2 border-gray-400 bg-white">
+                <SelectTrigger className="h-9 text-sm border-gray-300 bg-white">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -136,60 +136,62 @@ export default function PortfolioEditorModal({
               </Select>
             </div>
 
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="ativo"
-                checked={ativo}
-                onCheckedChange={(checked) => setAtivo(checked as boolean)}
-                className="h-4 w-4 border-2 border-gray-400"
-              />
-              <Label htmlFor="ativo" className="text-[10px] font-semibold text-gray-700">
-                Ativo:
-              </Label>
-            </div>
+            <div className="pt-4 space-y-4 border-t border-gray-200">
+              <div className="flex items-center space-x-3">
+                <Checkbox
+                  id="ativo"
+                  checked={ativo}
+                  onCheckedChange={(checked) => setAtivo(checked as boolean)}
+                  className="h-4 w-4 border-gray-300"
+                />
+                <Label htmlFor="ativo" className="text-xs font-medium text-gray-700 cursor-pointer">
+                  Active
+                </Label>
+              </div>
 
-            <div className="flex items-center space-x-2">
-              <Label className="text-[10px] font-semibold text-gray-700">
-                Book BS = Book PC:
-              </Label>
-              <Checkbox
-                id="bookBSEqualsBookPC"
-                checked={bookBSEqualsBookPC}
-                onCheckedChange={(checked) => setBookBSEqualsBookPC(checked as boolean)}
-                className="h-4 w-4 border-2 border-gray-400"
-              />
-            </div>
+              <div className="flex items-center space-x-3">
+                <Checkbox
+                  id="bookBSEqualsBookPC"
+                  checked={bookBSEqualsBookPC}
+                  onCheckedChange={(checked) => setBookBSEqualsBookPC(checked as boolean)}
+                  className="h-4 w-4 border-gray-300"
+                />
+                <Label htmlFor="bookBSEqualsBookPC" className="text-xs font-medium text-gray-700 cursor-pointer">
+                  Book BS = Book PC
+                </Label>
+              </div>
 
-            <div className="flex items-center space-x-2">
-              <Label htmlFor="dualBook" className="text-[10px] font-semibold text-gray-700">
-                DualBook:
-              </Label>
-              <Checkbox
-                id="dualBook"
-                checked={dualBook}
-                onCheckedChange={(checked) => setDualBook(checked as boolean)}
-                className="h-4 w-4 border-2 border-gray-400"
-              />
+              <div className="flex items-center space-x-3">
+                <Checkbox
+                  id="dualBook"
+                  checked={dualBook}
+                  onCheckedChange={(checked) => setDualBook(checked as boolean)}
+                  className="h-4 w-4 border-gray-300"
+                />
+                <Label htmlFor="dualBook" className="text-xs font-medium text-gray-700 cursor-pointer">
+                  Dual Book
+                </Label>
+              </div>
             </div>
           </div>
 
           {/* Right Panel - Tables */}
-          <div className="flex-1 p-3 space-y-3 overflow-y-auto">
+          <div className="flex-1 p-6 space-y-6 overflow-y-auto bg-white">
             {/* Book PC Section */}
-            <div className="bg-white border-2 border-gray-400 rounded">
-              <div className="flex items-center gap-2 p-2 border-b-2 border-gray-400 bg-gray-50">
-                <Label className="text-[10px] font-semibold text-gray-700">Book PC:</Label>
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <div className="flex items-center gap-3 p-4 border-b border-gray-200 bg-gray-50">
+                <Label className="text-xs font-semibold text-gray-700">Book PC:</Label>
                 <Select value={bookPC} onValueChange={setBookPC}>
-                  <SelectTrigger className="h-6 w-32 text-[10px] border-2 border-gray-400 bg-white">
+                  <SelectTrigger className="h-8 w-36 text-xs border-gray-300 bg-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="AF84B10">AF84B10</SelectItem>
                   </SelectContent>
                 </Select>
-                <Label className="text-[10px] font-semibold text-gray-700">Company Id:</Label>
+                <Label className="text-xs font-semibold text-gray-700">Company ID:</Label>
                 <Select value={companyIdPC} onValueChange={setCompanyIdPC}>
-                  <SelectTrigger className="h-6 w-20 text-[10px] border-2 border-gray-400 bg-white">
+                  <SelectTrigger className="h-8 w-24 text-xs border-gray-300 bg-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -198,36 +200,33 @@ export default function PortfolioEditorModal({
                     <SelectItem value="003">003</SelectItem>
                   </SelectContent>
                 </Select>
-                <Button className="h-6 px-3 text-[10px] bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="h-8 px-4 text-xs bg-blue-600 hover:bg-blue-700 text-white ml-auto">
                   Add
                 </Button>
               </div>
-              <div className="p-2">
-                <div className="text-[10px] font-bold text-center mb-1 text-gray-700">Book PC</div>
-                <table className="w-full text-[9px] border-collapse">
+              <div className="p-4">
+                <table className="w-full text-xs border-collapse">
                   <thead>
-                    <tr className="bg-gray-100 border-b border-gray-300">
-                      <th className="p-1 text-left font-bold border-r border-gray-300 w-8">
-                        <ChevronRight className="h-3 w-3" />
-                      </th>
-                      <th className="p-1 text-left font-bold border-r border-gray-300">Book</th>
-                      <th className="p-1 text-left font-bold border-r border-gray-300">Book Description</th>
-                      <th className="p-1 text-left font-bold border-r border-gray-300">Category</th>
-                      <th className="p-1 text-left font-bold border-r border-gray-300">Atom Code</th>
-                      <th className="p-1 text-left font-bold">Company Id</th>
+                    <tr className="bg-gray-50 border-b border-gray-200">
+                      <th className="p-2 text-left font-semibold border-r border-gray-200 w-10"></th>
+                      <th className="p-2 text-left font-semibold border-r border-gray-200">Book</th>
+                      <th className="p-2 text-left font-semibold border-r border-gray-200">Description</th>
+                      <th className="p-2 text-left font-semibold border-r border-gray-200">Category</th>
+                      <th className="p-2 text-left font-semibold border-r border-gray-200">Atom Code</th>
+                      <th className="p-2 text-left font-semibold">Company ID</th>
                     </tr>
                   </thead>
                   <tbody>
                     {bookPCData.map((row, idx) => (
-                      <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                        <td className="p-1 border-r border-gray-300">
-                          <ChevronRight className="h-3 w-3" />
+                      <tr key={idx} className={`border-b border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
+                        <td className="p-2 border-r border-gray-100">
+                          <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
                         </td>
-                        <td className="p-1 border-r border-gray-300">{row.book}</td>
-                        <td className="p-1 border-r border-gray-300">{row.description}</td>
-                        <td className="p-1 border-r border-gray-300">{row.category}</td>
-                        <td className="p-1 border-r border-gray-300">{row.atomCode}</td>
-                        <td className="p-1">{row.companyId}</td>
+                        <td className="p-2 border-r border-gray-100 text-gray-900">{row.book}</td>
+                        <td className="p-2 border-r border-gray-100 text-gray-900">{row.description}</td>
+                        <td className="p-2 border-r border-gray-100 text-gray-900">{row.category}</td>
+                        <td className="p-2 border-r border-gray-100 text-gray-900">{row.atomCode}</td>
+                        <td className="p-2 text-gray-900">{row.companyId}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -236,20 +235,20 @@ export default function PortfolioEditorModal({
             </div>
 
             {/* Book BS Section */}
-            <div className="bg-white border-2 border-gray-400 rounded">
-              <div className="flex items-center gap-2 p-2 border-b-2 border-gray-400 bg-gray-50">
-                <Label className="text-[10px] font-semibold text-gray-700">Book BS:</Label>
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <div className="flex items-center gap-3 p-4 border-b border-gray-200 bg-gray-50">
+                <Label className="text-xs font-semibold text-gray-700">Book BS:</Label>
                 <Select value={bookBS} onValueChange={setBookBS}>
-                  <SelectTrigger className="h-6 w-32 text-[10px] border-2 border-gray-400 bg-white">
+                  <SelectTrigger className="h-8 w-36 text-xs border-gray-300 bg-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="AF84B10">AF84B10</SelectItem>
                   </SelectContent>
                 </Select>
-                <Label className="text-[10px] font-semibold text-gray-700">Company Id:</Label>
+                <Label className="text-xs font-semibold text-gray-700">Company ID:</Label>
                 <Select value={companyIdBS} onValueChange={setCompanyIdBS}>
-                  <SelectTrigger className="h-6 w-20 text-[10px] border-2 border-gray-400 bg-white">
+                  <SelectTrigger className="h-8 w-24 text-xs border-gray-300 bg-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -258,36 +257,33 @@ export default function PortfolioEditorModal({
                     <SelectItem value="003">003</SelectItem>
                   </SelectContent>
                 </Select>
-                <Button className="h-6 px-3 text-[10px] bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="h-8 px-4 text-xs bg-blue-600 hover:bg-blue-700 text-white ml-auto">
                   Add
                 </Button>
               </div>
-              <div className="p-2">
-                <div className="text-[10px] font-bold text-center mb-1 text-gray-700">Book BS</div>
-                <table className="w-full text-[9px] border-collapse">
+              <div className="p-4">
+                <table className="w-full text-xs border-collapse">
                   <thead>
-                    <tr className="bg-gray-100 border-b border-gray-300">
-                      <th className="p-1 text-left font-bold border-r border-gray-300 w-8">
-                        <ChevronRight className="h-3 w-3" />
-                      </th>
-                      <th className="p-1 text-left font-bold border-r border-gray-300">Book</th>
-                      <th className="p-1 text-left font-bold border-r border-gray-300">Book Descri...</th>
-                      <th className="p-1 text-left font-bold border-r border-gray-300">Category</th>
-                      <th className="p-1 text-left font-bold border-r border-gray-300">Atom Code</th>
-                      <th className="p-1 text-left font-bold">Id_Emp</th>
+                    <tr className="bg-gray-50 border-b border-gray-200">
+                      <th className="p-2 text-left font-semibold border-r border-gray-200 w-10"></th>
+                      <th className="p-2 text-left font-semibold border-r border-gray-200">Book</th>
+                      <th className="p-2 text-left font-semibold border-r border-gray-200">Description</th>
+                      <th className="p-2 text-left font-semibold border-r border-gray-200">Category</th>
+                      <th className="p-2 text-left font-semibold border-r border-gray-200">Atom Code</th>
+                      <th className="p-2 text-left font-semibold">ID Emp</th>
                     </tr>
                   </thead>
                   <tbody>
                     {bookBSData.map((row, idx) => (
-                      <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                        <td className="p-1 border-r border-gray-300">
-                          <ChevronRight className="h-3 w-3" />
+                      <tr key={idx} className={`border-b border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
+                        <td className="p-2 border-r border-gray-100">
+                          <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
                         </td>
-                        <td className="p-1 border-r border-gray-300">{row.book}</td>
-                        <td className="p-1 border-r border-gray-300">{row.description}</td>
-                        <td className="p-1 border-r border-gray-300">{row.category}</td>
-                        <td className="p-1 border-r border-gray-300">{row.atomCode}</td>
-                        <td className="p-1">{row.idEmp}</td>
+                        <td className="p-2 border-r border-gray-100 text-gray-900">{row.book}</td>
+                        <td className="p-2 border-r border-gray-100 text-gray-900">{row.description}</td>
+                        <td className="p-2 border-r border-gray-100 text-gray-900">{row.category}</td>
+                        <td className="p-2 border-r border-gray-100 text-gray-900">{row.atomCode}</td>
+                        <td className="p-2 text-gray-900">{row.idEmp}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -296,20 +292,20 @@ export default function PortfolioEditorModal({
             </div>
 
             {/* Book Store Section */}
-            <div className="bg-white border-2 border-gray-400 rounded">
-              <div className="flex items-center gap-2 p-2 border-b-2 border-gray-400 bg-gray-50">
-                <Label className="text-[10px] font-semibold text-gray-700">Book Store:</Label>
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <div className="flex items-center gap-3 p-4 border-b border-gray-200 bg-gray-50">
+                <Label className="text-xs font-semibold text-gray-700">Book Store:</Label>
                 <Select value={bookStore} onValueChange={setBookStore}>
-                  <SelectTrigger className="h-6 w-48 text-[10px] border-2 border-gray-400 bg-white">
+                  <SelectTrigger className="h-8 w-52 text-xs border-gray-300 bg-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="031500001132DFLT09">031500001132DFLT09</SelectItem>
                   </SelectContent>
                 </Select>
-                <Label className="text-[10px] font-semibold text-gray-700">Company:</Label>
+                <Label className="text-xs font-semibold text-gray-700">Company:</Label>
                 <Select value={companyStore} onValueChange={setCompanyStore}>
-                  <SelectTrigger className="h-6 w-20 text-[10px] border-2 border-gray-400 bg-white">
+                  <SelectTrigger className="h-8 w-24 text-xs border-gray-300 bg-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -317,30 +313,27 @@ export default function PortfolioEditorModal({
                     <SelectItem value="002">002</SelectItem>
                   </SelectContent>
                 </Select>
-                <Button className="h-6 px-3 text-[10px] bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="h-8 px-4 text-xs bg-blue-600 hover:bg-blue-700 text-white ml-auto">
                   Add
                 </Button>
               </div>
-              <div className="p-2">
-                <div className="text-[10px] font-bold text-center mb-1 text-gray-700">Book Store</div>
-                <table className="w-full text-[9px] border-collapse">
+              <div className="p-4">
+                <table className="w-full text-xs border-collapse">
                   <thead>
-                    <tr className="bg-gray-100 border-b border-gray-300">
-                      <th className="p-1 text-left font-bold border-r border-gray-300 w-8">
-                        <ChevronRight className="h-3 w-3" />
-                      </th>
-                      <th className="p-1 text-left font-bold border-r border-gray-300">Code</th>
-                      <th className="p-1 text-left font-bold">Company Id</th>
+                    <tr className="bg-gray-50 border-b border-gray-200">
+                      <th className="p-2 text-left font-semibold border-r border-gray-200 w-10"></th>
+                      <th className="p-2 text-left font-semibold border-r border-gray-200">Code</th>
+                      <th className="p-2 text-left font-semibold">Company ID</th>
                     </tr>
                   </thead>
                   <tbody>
                     {bookStoreData.map((row, idx) => (
-                      <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                        <td className="p-1 border-r border-gray-300">
-                          <ChevronRight className="h-3 w-3" />
+                      <tr key={idx} className={`border-b border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
+                        <td className="p-2 border-r border-gray-100">
+                          <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
                         </td>
-                        <td className="p-1 border-r border-gray-300">{row.code}</td>
-                        <td className="p-1">{row.companyId}</td>
+                        <td className="p-2 border-r border-gray-100 text-gray-900">{row.code}</td>
+                        <td className="p-2 text-gray-900">{row.companyId}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -351,18 +344,18 @@ export default function PortfolioEditorModal({
         </div>
 
         {/* Footer Buttons */}
-        <div className="flex justify-end gap-2 p-3 border-t-2 border-gray-400 bg-gray-100">
+        <div className="flex justify-end gap-3 p-4 border-t border-gray-200 bg-gray-50">
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-7 px-6 text-[10px] bg-gray-300 hover:bg-gray-400 text-gray-800 border-2 border-gray-400"
+            className="h-9 px-6 text-sm bg-white hover:bg-gray-100 text-gray-700 border border-gray-300"
           >
-            OK
+            Cancel
           </Button>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-7 px-6 text-[10px] bg-gray-300 hover:bg-gray-400 text-gray-800 border-2 border-gray-400"
+            className="h-9 px-6 text-sm bg-blue-600 hover:bg-blue-700 text-white"
           >
-            Cancel
+            Save
           </Button>
         </div>
       </DialogContent>
